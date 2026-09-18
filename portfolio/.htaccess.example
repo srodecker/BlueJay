@@ -1,0 +1,58 @@
+# ============================================================================
+# Real access control for /portfolio/  (Apache / cPanel / most shared hosting)
+# ============================================================================
+#
+# The JavaScript gate on these pages is obfuscation. It stops a casual
+# visitor; it does not stop anyone who opens View Source, and it does not
+# protect portfolio/docs/*.pdf from being fetched directly.
+#
+# This file does. It makes the web server itself demand credentials before it
+# sends a single byte of anything in this directory, including the PDF.
+#
+# ---------------------------------------------------------------------------
+# TO ACTIVATE
+# ---------------------------------------------------------------------------
+#
+#  1. Rename this file to exactly ".htaccess" (drop the .example).
+#
+#  2. Create the password file OUTSIDE your web root, so it can never be
+#     downloaded. On cPanel this is usually /home/<user>/:
+#
+#         htpasswd -c /home/<user>/.rivosus-htpasswd investor
+#
+#     It will prompt for a password twice. To add more people later, run the
+#     same command WITHOUT -c (the -c flag creates a new file and wipes any
+#     existing one):
+#
+#         htpasswd /home/<user>/.rivosus-htpasswd secondperson
+#
+#  3. Correct the AuthUserFile path below to match step 2.
+#
+#  4. Load https://www.rivosus.com/portfolio/ and confirm the browser asks for
+#     a username and password. Then confirm the PDF is protected too, by
+#     opening it directly in a private window:
+#
+#         /portfolio/docs/BlueJay%20-%20Rivosus%20-%20Potential%20Uses.pdf
+#
+#     If that prompts for credentials, you are covered. If it downloads, stop
+#     and recheck the path in step 3.
+#
+# ---------------------------------------------------------------------------
+
+AuthType Basic
+AuthName "Rivosus Ranch - Private Circulation"
+
+# EDIT THIS PATH. It must point outside the web root.
+AuthUserFile /home/CHANGEME/.rivosus-htpasswd
+
+Require valid-user
+
+# Belt and braces: tell crawlers to stay out at the header level as well as
+# in the page <head>, in case a file here is ever served without its markup.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+  Header set Referrer-Policy "no-referrer"
+</IfModule>
+
+# Never allow directory listings here.
+Options -Indexes

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>File Archive &mdash; Rivosus Ranch</title>
+
+<!-- Unlisted. Kept out of indexes and out of referrer headers. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
+
+<link rel="icon" href="../assets/img/Rivosus%20Ranch%20Seal.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Spectral:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/portal.css">
+</head>
+
+<body class="portal" data-locked="true">
+
+<!-- GATE -- obfuscation, not access control. See assets/js/portal.js. -->
+<div class="gate" id="gate" data-unlocked="false">
+  <div class="gate__card">
+    <img class="gate__seal" src="../assets/img/Rivosus%20Ranch%20Seal.png" alt="Rivosus Ranch seal" width="1254" height="1254">
+    <h1 class="gate__title">Private Circulation</h1>
+    <p class="gate__note">
+      These pages are prepared for named recipients. If you have arrived here
+      without a passphrase, please return to the public site.
+    </p>
+    <form class="gate__form" id="gateForm" autocomplete="off">
+      <label class="visually-hidden" for="gateInput">Passphrase</label>
+      <input class="gate__input" id="gateInput" type="password"
+             placeholder="PASSPHRASE" autocomplete="off" spellcheck="false">
+      <p class="gate__error" id="gateError" role="status" aria-live="polite"></p>
+      <button class="btn btn--brass" type="submit" style="justify-content:center">Enter</button>
+      <a class="link" href="/" style="margin-top:1rem;font-size:var(--t-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--sage-300);border:0;align-self:center">
+        Return to rivosus.com
+      </a>
+    </form>
+  </div>
+</div>
+
+<div class="confidential">Confidential &middot; Not for distribution</div>
+
+<header class="site-header" id="siteHeader" data-mode="pinned">
+  <div class="site-header__inner">
+    <a class="brand" href="index.html" aria-label="Rivosus Ranch portfolio, overview">
+      <img class="brand__seal" src="../assets/img/Rivosus%20Ranch%20Seal.png" alt="" width="1254" height="1254" aria-hidden="true">
+      <span class="brand__text">
+        <span class="brand__name">Rivosus Ranch</span>
+        <span class="brand__sub">Portfolio</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav class="nav" id="primaryNav" aria-label="Portfolio">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="index.html">Overview</a></li>
+        <li><a class="nav__link" href="philanthropic.html">Philanthropic</a></li>
+        <li><a class="nav__link" href="development.html">Development</a></li>
+        <li><a class="nav__link" href="commercial.html">Commercial</a></li>
+        <li><a class="nav__link" href="recreational.html">Recreational</a></li>
+        <li><a class="nav__link" href="archive.html" aria-current="true">Archive</a></li>
+        <li><a class="nav__link" href="#" data-signout>Sign out</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==================================================================
+       DOSSIER HEAD
+       =================================================================== -->
+  <section class="dossier">
+    <div class="wrap">
+      <a class="backlink" href="index.html"><span aria-hidden="true">&larr;</span> Portfolio overview</a>
+      <p class="dossier__eyebrow">05 &nbsp;&middot;&nbsp; File Archive</p>
+      <h1 class="dossier__title">Source documents and records.</h1>
+      <p class="dossier__lede">
+        Everything held on the property in one place: the potential-uses study,
+        the archival and current photography, and the identity marks. Files are
+        served from this directory only and are not linked from the public site.
+      </p>
+
+      <div class="dossier__ref">
+        <span>File <b>RR&ndash;2026&ndash;01/05</b></span>
+        <span>Items <b>7</b></span>
+        <span>Access <b>Named recipients</b></span>
+        <span>Status <b>Current</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       THE STUDY - embedded PDF
+       =================================================================== -->
+  <section class="portal-section" id="study">
+    <div class="wrap">
+      <p class="portal-kicker">Principal Document</p>
+      <h2 class="portal-h2" style="max-width:24ch">BlueJay &mdash; Rivosus &mdash; Potential Uses</h2>
+      <p style="margin-top:1.25rem;color:var(--fg-muted);font-size:var(--t-sm);line-height:1.75;max-width:62ch">
+        The full study behind the four categories in this portfolio. This is the
+        only complete statement of intent for the property and it appears
+        nowhere on the public site.
+      </p>
+
+      <div class="docviewer">
+        <div class="docviewer__bar">
+          <span>BlueJay &mdash; Rivosus &mdash; Potential Uses &middot; PDF &middot; 2.8&nbsp;MB</span>
+          <a class="dl" href="docs/BlueJay%20-%20Rivosus%20-%20Potential%20Uses.pdf" download>Download &darr;</a>
+        </div>
+
+        <!-- Not lazy-loaded: portal.js listens for this frame's load event to
+             decide whether to fall back, and a deferred load would trip it. -->
+        <iframe class="docviewer__frame" id="docFrame"
+                src="docs/BlueJay%20-%20Rivosus%20-%20Potential%20Uses.pdf#view=FitH"
+                title="BlueJay - Rivosus - Potential Uses (PDF)"></iframe>
+
+        <div class="docviewer__fallback" id="docFallback" hidden>
+          <p style="margin-bottom:1.25rem">
+            Your browser will not display this PDF inline. Open or download it
+            directly instead.
+          </p>
+          <a class="btn btn--brass" href="docs/BlueJay%20-%20Rivosus%20-%20Potential%20Uses.pdf" target="_blank" rel="noopener">
+            Open the study
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       FILE TABLE
+       =================================================================== -->
+  <section class="portal-section">
+    <div class="wrap">
+      <p class="portal-kicker">All Files</p>
+      <h2 class="portal-h2">The archive.</h2>
+
+      <div class="filterbar" id="filterbar" role="group" aria-label="Filter files by category">
+        <button class="filterbar__btn" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filterbar__btn" type="button" data-filter="study" aria-pressed="false">Study</button>
+        <button class="filterbar__btn" type="button" data-filter="photography" aria-pressed="false">Photography</button>
+        <button class="filterbar__btn" type="button" data-filter="identity" aria-pressed="false">Identity</button>
+      </div>
+
+      <div class="table-scroll">
+        <table class="filetable" id="fileTable">
+          <caption class="visually-hidden">Archive files, with format, size and download link</caption>
+          <thead>
+            <tr>
+              <th scope="col">Document</th>
+              <th scope="col">Category</th>
+              <th scope="col">Format</th>
+              <th scope="col">Size</th>
+              <th scope="col"><span class="visually-hidden">Download</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-category="study">
+              <td class="filetable__name">
+                <a href="docs/BlueJay%20-%20Rivosus%20-%20Potential%20Uses.pdf" target="_blank" rel="noopener">BlueJay &mdash; Rivosus &mdash; Potential Uses</a>
+              </td>
+              <td>Potential uses study</td>
+              <td><span class="filetable__type">PDF</span></td>
+              <td>2.8 MB</td>
+              <td><a class="dl" href="docs/BlueJay%20-%20Rivosus%20-%20Potential%20Uses.pdf" download>Download</a></td>
+            </tr>
+
+            <tr data-category="photography">
+              <td class="filetable__name">
+                <a href="../assets/img/Bluejay%20-%201917%20stone%20work.jpg" target="_blank" rel="noopener">Bluejay &mdash; 1917 stone work</a>
+              </td>
+              <td>Archival photograph</td>
+              <td><span class="filetable__type">JPG</span></td>
+              <td>202 KB</td>
+              <td><a class="dl" href="../assets/img/Bluejay%20-%201917%20stone%20work.jpg" download>Download</a></td>
+            </tr>
+
+            <tr data-category="photography">
+              <td class="filetable__name">
+                <a href="../assets/img/Bluejay%20-%202026%20stone%20work.jpg" target="_blank" rel="noopener">Bluejay &mdash; 2026 stone work</a>
+              </td>
+              <td>Current photograph</td>
+              <td><span class="filetable__type">JPG</span></td>
+              <td>251 KB</td>
+              <td><a class="dl" href="../assets/img/Bluejay%20-%202026%20stone%20work.jpg" download>Download</a></td>
+            </tr>
+
+            <tr data-category="photography">
+              <td class="filetable__name">
+                <a href="../assets/img/Bluejay%20-%201917%20-%202026%20stone%20work.jpg" target="_blank" rel="noopener">Bluejay &mdash; 1917 &ndash; 2026 stone work</a>
+              </td>
+              <td>Comparison plate</td>
+              <td><span class="filetable__type">JPG</span></td>
+              <td>627 KB</td>
+              <td><a class="dl" href="../assets/img/Bluejay%20-%201917%20-%202026%20stone%20work.jpg" download>Download</a></td>
+            </tr>
+
+            <tr data-category="identity">
+              <td class="filetable__name">
+                <a href="../assets/img/bluejay%20land%20logo.png" target="_blank" rel="noopener">Bluejay land logo</a>
+              </td>
+              <td>Stonework elevation</td>
+              <td><span class="filetable__type">PNG</span></td>
+              <td>2.1 MB</td>
+              <td><a class="dl" href="../assets/img/bluejay%20land%20logo.png" download>Download</a></td>
+            </tr>
+
+            <tr data-category="identity">
+              <td class="filetable__name">
+                <a href="../assets/img/Rivosus%20Ranch%20Seal.png" target="_blank" rel="noopener">Rivosus Ranch Seal</a>
+              </td>
+              <td>Primary mark</td>
+              <td><span class="filetable__type">PNG</span></td>
+              <td>1.0 MB</td>
+              <td><a class="dl" href="../assets/img/Rivosus%20Ranch%20Seal.png" download>Download</a></td>
+            </tr>
+
+            <tr data-category="identity">
+              <td class="filetable__name">
+                <a href="../assets/img/RPI-1%20-%20RodeckerR_Logo_3-newbird%20-%20Copy.png" target="_blank" rel="noopener">RPI &mdash; Rodecker logo</a>
+              </td>
+              <td>Corporate mark</td>
+              <td><span class="filetable__type">PNG</span></td>
+              <td>33 KB</td>
+              <td><a class="dl" href="../assets/img/RPI-1%20-%20RodeckerR_Logo_3-newbird%20-%20Copy.png" download>Download</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p id="fileEmpty" hidden style="padding:2rem 0;color:var(--stone-500);font-size:var(--t-sm)">
+          No files in this category.
+        </p>
+      </div>
+
+      <div class="callout">
+        <strong>Adding to the archive.</strong> Drop new documents into
+        <code>portfolio/docs/</code> and add a matching <code>&lt;tr&gt;</code>
+        to the table above, with a <code>data-category</code> of
+        <code>study</code>, <code>photography</code> or <code>identity</code>.
+        The filter bar picks it up automatically. To add a new category, add a
+        button to the filter bar with a matching <code>data-filter</code>.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <img class="site-footer__seal" src="../assets/img/Rivosus%20Ranch%20Seal.png" alt="Rivosus Ranch seal" width="1254" height="1254" loading="lazy">
+        <p class="site-footer__mark">Rivosus Ranch</p>
+        <p style="margin-top:.9rem;max-width:36ch;font-size:var(--t-sm);opacity:.85">
+          These materials are confidential and prepared for named recipients
+          only. Please do not forward, reproduce or circulate.
+        </p>
+      </div>
+      <div>
+        <h4>Portfolio</h4>
+        <ul>
+          <li><a href="philanthropic.html">Philanthropic</a></li>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+          <li><a href="recreational.html">Recreational</a></li>
+          <li><a href="archive.html">File Archive</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Enquiries</h4>
+        <ul>
+          <li><a href="mailto:invest@rivosus.com">invest@rivosus.com</a></li>
+          <li><a href="/">Public site</a></li>
+          <li><a href="#" data-signout>Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__base">
+      <p>&copy; 2026 Rivosus Ranch. Confidential.</p>
+      <a class="rpi-credit" href="#" aria-label="Rodecker Properties">
+        <img src="../assets/img/RPI-1%20-%20RodeckerR_Logo_3-newbird%20-%20Copy.png" alt="" width="612" height="612" loading="lazy">
+        <span>Rodecker Properties</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/portal.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+/* ==========================================================================
+   Rivosus Ranch - portal.css
+   Private investor / archive area. Depends on base.css.
+   Deliberately a different register from the public site: tabular, muted,
+   documentary. Nothing here should read as marketing.
+   ========================================================================== */
+
+/* ---------- 1. Shell ------------------------------------------------------ */
+
+body.portal {
+  background: #12100C;
+  color: var(--parchment-200);
+  --rule: rgba(243, 237, 225, 0.14);
+  --fg: var(--parchment-100);
+  --fg-muted: #A9A296;
+}
+
+body.portal .site-header[data-mode="pinned"] {
+  background: rgba(18, 16, 12, 0.94);
+  border-bottom-color: var(--rule);
+}
+body.portal .site-header[data-mode="pinned"] .brand__name,
+body.portal .nav__link { color: var(--parchment-200); }
+body.portal .brand__name { color: var(--parchment-100); }
+body.portal .brand__sub { color: var(--brass-500); }
+body.portal .brand__seal { filter: brightness(0) invert(1) opacity(.88); }
+body.portal .nav-toggle__bar { background: var(--parchment-100); }
+
+@media (max-width: 880px) {
+  body.portal .nav { background: #12100C; }
+}
+
+/* The portal nav carries seven items against the public site's five. Between
+   the mobile breakpoint and roughly 1050px they would overrun the brand, so
+   tighten the tracking and gaps through that band only. */
+@media (min-width: 881px) and (max-width: 1080px) {
+  body.portal .nav, body.portal .nav__list { gap: 1rem; }
+  body.portal .nav__link { font-size: 0.625rem; letter-spacing: 0.12em; }
+  body.portal .brand__sub { display: none; }
+}
+
+/* ---------- 2. Confidential ribbon ---------------------------------------- */
+
+.confidential {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 120;
+  background: var(--brass-500);
+  color: #1A1509;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.45rem var(--gutter);
+  padding-top: calc(0.45rem + env(safe-area-inset-top, 0px));
+}
+body.portal .site-header { top: 0; padding-top: calc(1.85rem + env(safe-area-inset-top, 0px)); }
+body.portal { padding-top: 0; }
+
+/* ---------- 3. Gate --------------------------------------------------------- */
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  background:
+    radial-gradient(120% 90% at 50% 10%, #14452A 0%, var(--pine-800) 45%, var(--pine-900) 100%);
+  transition: opacity .6s var(--ease), visibility .6s var(--ease);
+}
+.gate[data-unlocked="true"] { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* While the gate is up, the page beneath it does not scroll. */
+body[data-locked="true"] { overflow: hidden; }
+
+.gate__card {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  color: var(--parchment-100);
+}
+.gate__seal {
+  width: 88px;
+  margin: 0 auto 2rem;
+  filter: brightness(0) invert(1) opacity(.9);
+}
+.gate__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.375rem);
+  font-weight: 300;
+  line-height: 1.15;
+}
+.gate__note {
+  margin-top: 1rem;
+  font-size: var(--t-sm);
+  color: var(--sage-200);
+  line-height: 1.6;
+}
+
+.gate__form { margin-top: 2.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+.gate__input {
+  width: 100%;
+  padding: 1rem 1.15rem;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  color: var(--parchment-50);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  transition: border-color .3s var(--ease), background-color .3s var(--ease);
+}
+.gate__input::placeholder { color: rgba(243, 237, 225, 0.38); letter-spacing: 0.18em; }
+.gate__input:focus { outline: none; border-color: var(--brass-500); background: rgba(0,0,0,.4); }
+
+.gate__error {
+  min-height: 1.4rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #E0A08A;
+}
+.gate__card.is-wrong { animation: gateShake .45s var(--ease); }
+@keyframes gateShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-9px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(3px); }
+}
+
+/* ---------- 4. Dossier head -------------------------------------------------- */
+
+.dossier {
+  padding-top: clamp(9rem, 16vh, 12rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.dossier__eyebrow {
+  font-size: var(--t-label);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brass-500);
+  margin-bottom: 1.5rem;
+}
+.dossier__title {
+  font-family: var(--font-display);
+  font-size: var(--t-xxl);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--parchment-50);
+  max-width: 18ch;
+}
+.dossier__lede {
+  margin-top: 1.75rem;
+  max-width: 62ch;
+  color: var(--fg-muted);
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.7;
+}
+
+/* Reference line, like a file stamp */
+.dossier__ref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone-500);
+}
+.dossier__ref b { color: var(--parchment-200); font-weight: 400; }
+
+/* ---------- 5. Category grid ------------------------------------------------- */
+
+/* Hairline dividers come from a 1px ring on each cell rather than a coloured
+   grid background showing through a 1px gap. With five cards on a four-column
+   row the old technique left the trailing empty cells painted as a solid
+   block; a ring only ever draws around a card that exists. */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1px;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.category {
+  background: #17150F;
+  box-shadow: 0 0 0 1px var(--rule);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color .45s var(--ease);
+  position: relative;
+}
+.category:hover { background: #1E1B13; }
+.category__index {
+  font-size: var(--t-label);
+  letter-spacing: 0.24em;
+  color: var(--brass-500);
+  margin-bottom: 1.25rem;
+}
+.category__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--parchment-50);
+}
+.category__desc {
+  margin-top: 0.9rem;
+  font-size: var(--t-sm);
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+.category__go {
+  margin-top: auto;
+  padding-top: 1.75rem;
+  font-size: var(--t-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--parchment-200);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.category__go span { transition: transform .4s var(--ease); }
+.category:hover .category__go span { transform: translateX(6px); }
+
+/* ---------- 6. Concept cards -------------------------------------------------- */
+
+.concepts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.concept {
+  background: #17150F;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 2.6vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+}
+.concept__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+}
+.concept__name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--parchment-50);
+}
+.concept__body { font-size: var(--t-sm); line-height: 1.7; color: var(--fg-muted); }
+
+/* Status chip */
+.chip {
+  flex: none;
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.38rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  white-space: nowrap;
+  margin-top: 0.3rem;
+}
+.chip--priority { color: var(--brass-400); }
+.chip--concept  { color: var(--sage-300); }
+.chip--study    { color: #8FA6C4; }
+
+/* Key/value considerations inside a concept */
+.concept__meta { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); list-style: none; }
+.concept__meta li {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.5rem 0;
+  font-size: var(--t-xs);
+  line-height: 1.6;
+}
+.concept__meta dt, .concept__meta .k {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone-500);
+}
+.concept__meta .v { color: var(--parchment-200); }
+/* Unfilled placeholder values. Deliberately quiet, but still above 4.5:1 on
+   the card ground - these are the figures that still need real diligence, so
+   they must stay readable. */
+.v--todo { color: #8C8474; font-style: italic; letter-spacing: 0; text-transform: none; }
+
+@media (max-width: 520px) {
+  .concept__meta li { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+/* ---------- 7. Data table (archive) -------------------------------------------- */
+
+.table-scroll { overflow-x: auto; margin-top: clamp(2rem, 4vw, 3rem); }
+
+.filetable {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+}
+.filetable th {
+  text-align: left;
+  font-weight: 500;
+  font-size: var(--t-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stone-500);
+  padding: 0 1.25rem 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.filetable td {
+  padding: 1.15rem 1.25rem 1.15rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+  color: var(--fg-muted);
+}
+.filetable tr:hover td { background: rgba(255,255,255,.02); }
+.filetable__name { color: var(--parchment-50); font-family: var(--font-display); font-size: 1.15rem; }
+.filetable__name a { text-decoration: none; }
+.filetable__name a:hover { color: var(--brass-400); }
+.filetable__type {
+  font-size: 0.5625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  padding: 0.3rem 0.55rem;
+  border-radius: 2px;
+  color: var(--stone-400);
+}
+.filetable .dl {
+  font-size: var(--t-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--brass-500);
+  white-space: nowrap;
+}
+.filetable .dl:hover { color: var(--brass-400); }
+
+/* Filter bar */
+.filterbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.filterbar__btn {
+  font-size: var(--t-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  color: var(--fg-muted);
+  transition: color .3s var(--ease), border-color .3s var(--ease), background-color .3s var(--ease);
+}
+.filterbar__btn:hover { color: var(--parchment-100); border-color: var(--stone-500); }
+.filterbar__btn[aria-pressed="true"] {
+  background: var(--brass-500);
+  border-color: var(--brass-500);
+  color: #1A1509;
+}
+
+/* ---------- 8. Document viewer -------------------------------------------------- */
+
+.docviewer {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #0C0B08;
+}
+.docviewer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone-400);
+}
+.docviewer__frame { width: 100%; height: clamp(420px, 78vh, 900px); border: 0; display: block; background: #2B2822; }
+.docviewer__fallback { padding: clamp(1.5rem, 3vw, 2.5rem); font-size: var(--t-sm); color: var(--fg-muted); }
+
+/* ---------- 9. Misc ------------------------------------------------------------- */
+
+.portal-section { padding-block: clamp(3rem, 6vw, 5.5rem); }
+.portal-section + .portal-section { border-top: 1px solid var(--rule); }
+
+.portal-h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 300;
+  color: var(--parchment-50);
+  line-height: 1.1;
+}
+.portal-kicker {
+  font-size: var(--t-label);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass-500);
+  margin-bottom: 1.15rem;
+}
+
+.callout {
+  border-left: 2px solid var(--brass-500);
+  padding: 1.25rem 0 1.25rem 1.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  font-size: var(--t-sm);
+  line-height: 1.7;
+  color: var(--fg-muted);
+  background: rgba(195, 154, 78, 0.05);
+}
+.callout strong { color: var(--parchment-100); font-weight: 500; }
+
+.backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--t-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--stone-400);
+  margin-bottom: 2rem;
+  transition: color .3s var(--ease);
+}
+.backlink:hover { color: var(--parchment-100); }
+
+body.portal .site-footer { background: #0C0B08; border-top: 1px solid var(--rule); }
+body.portal .site-footer__seal { width: 64px; }
+
+/* ---------- 10. Print ------------------------------------------------------------ */
+
+@media print {
+  .site-header, .gate, .filterbar, .hero__scroll, .backlink { display: none !important; }
+  body.portal { background: #fff; color: #000; }
+  .confidential { position: static; background: none; color: #000; border-bottom: 2px solid #000; }
+  .concept, .category { border: 1px solid #999; background: none; page-break-inside: avoid; }
+  .dossier__title, .concept__name, .portal-h2, .category__name { color: #000; }
+  .concept__body, .dossier__lede, .category__desc { color: #333; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.7em; color: #666; }
+}

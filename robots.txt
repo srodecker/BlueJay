@@ -1,0 +1,20 @@
+# www.rivosus.com
+#
+# NOTE: /portfolio/ is deliberately NOT listed here.
+#
+# robots.txt is world-readable, so a "Disallow: /portfolio/" line would
+# publish the exact path we are trying to keep quiet -- it is one of the
+# first files anyone curious about a site opens. Worse, a disallowed URL can
+# still be listed in search results (as a bare URL with no description) if
+# anyone ever links to it, because the crawler is forbidden from fetching the
+# page and reading the noindex tag.
+#
+# The portfolio pages instead carry <meta name="robots" content="noindex,
+# nofollow, noarchive, nosnippet"> in their own <head>. Crawlers are allowed
+# to fetch them, see the noindex, and drop them. That keeps them out of search
+# results without announcing them here.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.rivosus.com/sitemap.xml
