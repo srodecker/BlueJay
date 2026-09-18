@@ -275,10 +275,24 @@
 /* ---------- 5b. Gallery --------------------------------------------------- */
 /* Grid of clickable image thumbnails with lightbox integration. */
 
+/* Uniform cells rather than per-item aspect ratios: the set runs 0.83 to 2.60,
+   and letting each tile size itself leaves ragged rows. */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: clamp(1rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  grid-auto-rows: clamp(165px, 17vw, 225px);
+  grid-auto-flow: dense;
+  gap: clamp(0.75rem, 1.6vw, 1.25rem);
+}
+
+/* The 1200x462 magazine banner and the 667x800 group photograph are the two
+   outliers; spanning them keeps the crop off their subjects. */
+.gallery-item--wide { grid-column: span 2; }
+.gallery-item--tall { grid-row: span 2; }
+
+@media (max-width: 560px) {
+  .gallery-item--wide { grid-column: span 1; }
+  .gallery-item--tall { grid-row: span 1; }
 }
 
 .gallery-item {
@@ -287,7 +301,6 @@
   border-radius: var(--radius);
   background: var(--parchment-200);
   margin: 0;
-  aspect-ratio: 1;
   box-shadow: var(--shadow-plate);
   transition: transform .4s var(--ease), box-shadow .4s var(--ease);
 }
@@ -331,38 +344,49 @@
   opacity: 1;
 }
 
-@media (max-width: 720px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-  }
-  .gallery-item { aspect-ratio: 1; }
+/* The captions carry the dates, so they cannot be hover-only where there is
+   no hover. */
+@media (hover: none) {
+  .gallery-item figcaption { opacity: 1; }
 }
 
-/* Scattered photo callouts in narrative */
+@media (max-width: 720px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: clamp(130px, 34vw, 175px);
+    gap: 0.6rem;
+  }
+}
+
+/* Scattered photo callouts: a print set into the narrative column. */
 .photo-callout {
-  margin: 2rem 0;
-  max-width: 420px;
+  margin: 1.75rem 0 0;
+  max-width: 32rem;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--parchment-200);
   box-shadow: var(--shadow-plate);
+  cursor: zoom-in;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+
+.photo-callout:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -8px rgba(7, 30, 19, 0.45);
 }
 
 .photo-callout img {
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 4/3;
-  object-fit: cover;
 }
 
 .photo-callout figcaption {
-  padding: 0.75rem 1rem;
-  font-size: var(--t-sm);
+  padding: 0.7rem 1rem 0.8rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--stone-600);
-  text-align: center;
-  font-style: italic;
 }
 
 /* ---------- 6. Timeline ---------------------------------------------------- */
