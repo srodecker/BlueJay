@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit -m 'Add gallery section with 13 historical and contemporary photographs *)",
+      "Bash(git push *)"
+    ]
+  }
+}
