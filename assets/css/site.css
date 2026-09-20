@@ -237,6 +237,12 @@
   text-wrap: pretty;
 }
 .section--pine .fact__label { color: var(--sage-200); }
+.fact__label--sub {
+  font-size: 0.8em;
+  font-style: italic;
+  opacity: 0.75;
+  margin-top: 0.35rem;
+}
 
 @media (max-width: 640px) {
   .fact {
@@ -261,25 +267,6 @@
 }
 @media (max-width: 760px) { .plates-pair { grid-template-columns: 1fr; gap: 2.5rem; } }
 
-/* Full-bleed diptych band.
-   Centred with margin rather than translateX: this element also carries
-   [data-reveal], whose revealed state sets `transform: none` and would
-   otherwise cancel the centring and shunt the band off to the right. */
-.bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  overflow: hidden;
-}
-.bleed img { width: 100%; object-fit: cover; }
-.bleed__caption {
-  max-width: var(--wrap);
-  margin: 1.25rem auto 0;
-  padding-inline: var(--gutter);
-  font-size: var(--t-sm);
-  color: var(--stone-600);
-  letter-spacing: 0.04em;
-}
-
 /* ---------- 5b. Gallery --------------------------------------------------- */
 /* Grid of clickable image thumbnails with lightbox integration. */
 
@@ -297,10 +284,12 @@
    outliers; spanning them keeps the crop off their subjects. */
 .gallery-item--wide { grid-column: span 2; }
 .gallery-item--tall { grid-row: span 2; }
+.gallery-item--comparison { grid-column: span 2; }
 
 @media (max-width: 560px) {
   .gallery-item--wide { grid-column: span 1; }
   .gallery-item--tall { grid-row: span 1; }
+  .gallery-item--comparison { grid-column: span 1; }
 }
 
 .gallery-item {
